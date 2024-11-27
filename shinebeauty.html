@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shine beauty </title>
+    <title>Shine Beauty</title>
+    <link rel="stylesheet" href="shinebeauty.css">
+    
 </head>
+
 <body>
-    <h1>shine beauty</h1>
-    <h2>test le branch</h2>
+
+    <div class="form-container">
+        <h1>Formulaire de Commande</h1>
+
+        <form id="commandeForm">
+            <div class="form-group">
+                <label for="nom">Nom et Prénom</label>
+                <input type="text" id="nom" name="nom" required placeholder="Entrez votre nom et prénom">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Entrez votre email">
+            </div>
+
+            <div class="form-group">
+                <label for="adresse">Adresse</label>
+                <textarea id="adresse" name="adresse" required placeholder="Entrez votre adresse"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="telephone">Numéro de téléphone</label>
+                <input type="text" id="telephone" name="telephone" required placeholder="Entrez votre numéro de téléphone">
+            </div>
+
+            <div class="form-group quantity-controls">
+                <label for="quantite">Quantité</label>
+                <button type="button" id="decreaseBtn">-</button>
+                <input type="number" id="quantite" name="quantite" min="1" value="1" readonly>
+                <button type="button" id="increaseBtn">+</button>
+            </div>
+
+            <div class="total-section">
+                <p>Total de la commande: <span id="total">10.00</span></p>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Valider la commande</button>
+            </div>
+        </form>
+    </div>
+
+
+        </div></br>
+       
+    </form>
+    <script src="shinebeauty.js"></script>
+
 </body>
 </html>
