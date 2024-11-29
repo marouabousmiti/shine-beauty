@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shine beauty </title>
+    <link rel="icon" type="image/png" href="icon.png">
     <link rel="stylesheet" href="shinebeauty.css">
     <!-- Ajoutez cette ligne dans le <head> de votre HTML pour importer la police -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -25,6 +26,56 @@
           <a href="#contact">Contact</a>
         </div>
       </nav>
+
+      <!--slider-->
+      <div class="gallery">
+        <div class="image-containerslide active" data-text="Photo 1 : Description ici">
+          <img src="photo1.jpg" alt="Photo 1">
+        </div>
+        <div class="image-containerslide" data-text="Photo 2 : Une autre description">
+          <img src="photo2.jpg" alt="Photo 2">
+        </div>
+        <div class="image-containerslide" data-text="Photo 3 : Dernière image">
+          <img src="photo3.jpg" alt="Photo 3">
+        </div>
+        <div class="text-overlay"></div>
+      </div>
+    
+      <!-- Boutons sous forme de flèches -->
+    <button class="arrow left-arrow">&#10094;</button> <!-- Flèche gauche -->
+    <button class="arrow right-arrow">&#10095;</button> <!-- Flèche droite -->
+<div  class="product-container">
+    <!-- Produit 1 -->
+    <div class="product-card">
+        <img src="product1.jpg" alt="Produit 1" class="default-image">
+        <h2>Christian Dior  Glow Face </h2>
+        <p class="description">Palette Highlight Blush 004 Rose Gold </p>
+        <p class="price">Prix : 350 MAD</p>
+        <p class="availability disponible">Disponible</p>
+        <button>Commander</button>
+      </div>
+  
+      <!-- Produit 2 -->
+      <div class="product-card">
+        <img src="product2.jpg" alt="Produit 2" class="default-image">
+        <h2>Rouge Dior Forever</h2>
+        <p class="description">rouge à lèvres mat ultra-pigmenté</p>
+        <p class="price">Prix : 499 MAD</p>
+        <p class="availability non-disponible">Non disponible</p>
+        <button disabled>Commander</button>
+      </div>
+  
+      <!-- Produit 3 -->
+      <div class="product-card">
+        <img src="product3.jpg" alt="Produit 3" class="default-image">
+        <h2>Nom du produit 3</h2>
+        <p class="description">Description courte du produit 3.</p>
+        <p class="price">Prix : 150 MAD</p>
+        <p class="availability disponible">Disponible</p>
+        <button>Commander</button>
+      </div>
+</div> 
+      <script src="shinebeauty.js"></script>
     
     
     
