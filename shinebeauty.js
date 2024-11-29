@@ -1,4 +1,4 @@
-const prixUnitaire = 10; // Le prix d'un produit
+const prixUnitaire = 1500; // Le prix d'un produit
 const quantiteInput = document.getElementById('quantite');
 const totalSpan = document.getElementById('total');
 const decreaseBtn = document.getElementById('decreaseBtn');
