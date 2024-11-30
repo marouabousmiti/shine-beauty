@@ -1,56 +1,569 @@
+/* Corps principal */
 body {
-    margin: 0;
-    padding-top: 70px;
-    font-family: Arial, sans-serif;
-    background-color: #d3b18b;
-  }
+  margin: 0;
+  padding-top: 70px;
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+  
+}
+.navbar {
+  position: fixed;
+  top: 0; /* Fixée en haut de la page */
+  right: 0;
+  left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eae4dd;
+  width: 100%;
+  height: 60px;
+  box-shadow: 0 4px 6px rgba(255, 232, 232, 0.887); /* Ombre */
+  z-index: 1000; /* S'assurer qu'elle est au-dessus des autres éléments */
+  padding: 10px 40px;
+  overflow: hidden; /* Pas de défilement */
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center; /* Centre verticalement */
+  justify-content: center; /* Centre horizontalement */
+  gap: 400px;
+
+}
+.logo-container img {
+  height: 150px;
+  width: 150px;
+ 
+}
+.logo-container h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-align: center; /* Changez ici de start à center */
+  font-family: 'Playfair Display', serif;
+}
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+.nav-links a {
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+.nav-links a:hover {
+  background-color: #000000;
+  border-radius: 50px;
+  transform: translateY(3px);
+  box-shadow: 0 4px 6px rgba(67, 41, 1, 0.857);
+  color:rgb(255, 255, 255) ;
+}
+
+/* Galerie principale */
+.gallery {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  padding-top: 200px;
+}
+
+/* Images */
+.image-containerslide {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.image-containerslide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-containerslide.active {
+  display: block;
+}
+
+/* Overlay texte */
+.text-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 5;  
+}
+
+/* Boutons de navigation */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+/* Position des flèches */
+.left-arrow {
+  left: 15px;
+}
+
+.right-arrow {
+  right: 15px;
+}
+
+/* Effet hover des flèches */
+.arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* Container des produits */
+.product-container {
+  display: grid; /* Utilisation de Grid Layout */
+  grid-auto-flow: column; /* Force les éléments à s'aligner en colonne (horizontalement) */
+  grid-auto-columns: minmax(300px, 1fr); /* Définit une largeur minimale et une largeur flexible pour chaque élément */
+  gap: 20px; /* Ajoute de l'espace entre les éléments */
+  padding: 20px;
+}
+
+
+/* Carte produit */
+.product-card {
+  background-color: #eae4dd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgb(197, 159, 35);
+  overflow: hidden;
+  width: 100%;
+  max-width: 350px; /* Limite la largeur des cartes */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding-bottom: 10px;
+}
+
+/* Effet au survol de la carte */
+.product-card:hover {
+  transform: translateY(-10px); /* Légère élévation au survol */
+  box-shadow: 0 8px 16px rgb(252, 219, 153); /* Ombre plus marquée */
+}
+
+/* Image du produit */
+.product-card img {
+  width: 100%;
+  height: 250px;
+  border-bottom: 2px solid #eee; /* Ajoute une ligne sous l'image */
+}
+/* Conteneur de l'image */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 300px; /* Hauteur de l'image */
+  overflow: hidden; /* Cache tout débordement de l'image */
+}
+
+/* Image par défaut */
+.default-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Remplissage sans déformation */
+  transition: opacity 0.3s ease; /* Transition pour l'opacité */
+}
+
+/* Image au survol (par défaut cachée) */
+.hover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; /* L'image est cachée au départ */
+  transition: opacity 0.3s ease; /* Transition pour l'opacité */
+}
+
+/* Effet de survol */
+.product-card:hover .default-image {
+  opacity: 0; /* Cache l'image initiale */
+}
+
+.product-card:hover .hover-image {
+  opacity: 1; /* Affiche l'image de remplacement */
+}
+
+
+/* Titre du produit */
+.product-card h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 15px 0 10px;
+  font-weight: bold;
+}
+
+/* Description du produit */
+.product-card .description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Prix du produit */
+.product-card .price {
+  font-size: 1.2rem;
+  color: #947d16; /* Orange pour mettre en évidence le prix */
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* Disponibilité du produit */
+.product-card .availability {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-card .disponible {
+  color: green;
+}
+
+.product-card .non-disponible {
+  color: red;
+}
+
+/* Bouton commander */
+.product-card button {
+  background-color: #4b0000;
+  color: #eae4dd;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.product-card button:hover {
+  background-color: #eae4dd;
+  color: #4b0000; /* Changement de couleur au survol */
+  box-shadow: 0 2px 4px rgb(80, 0, 0); 
+}
+
+.product-card button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* Formulaire */
+.form-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 400px;
+  background-color: #4b0000;
+  color: #eae4dd;
+   
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 400px; /* Largeur fixe */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #eae4dd;
+    box-shadow: 0 5px 10px rgb(52, 0, 0, 1.2);
+}
+#bvc button{
+  background-color:#eae4dd ;
+  color: #4b0000;
+  padding: 10px 20px; /* Augmente la taille interne (haut/bas, gauche/droite) */
+  font-size: 18px;    /* Agrandit la taille du texte */
+  border-radius: 5px; /* Donne des coins arrondis */
+  border: none; /* Enlève la bordure par défaut */
+  cursor: pointer; /* Ajoute un curseur pointer pour l'interaction */
+  display: block;       /* Rend le bouton un élément de type block */
+  margin: 0 auto;       /* Centre le bouton horizontalement */
+}
+
+/* Tableau des commandes */
+#commandeTable {
+  margin-top: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color:#4b0000;
+  color: #eae4dd;
+}
+
+table th, table td {
+  padding: 8px;
+  text-align: center;
+}
+
+table th {
+  background-color: #eae4dd;
+  color: #4b0000;
+}
+
+/* Footer */
+.luxury-footer {
+  background-color: #eae4dd; /* Fond sombre */
+  color: #000000; 
+  padding: 50px 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+.footer-container {
+  display: grid;
+  grid-auto-flow: column; /* Force les éléments à s'aligner en colonne (horizontalement) */
+  grid-auto-columns: minmax(4, 1fr); /* Définit une largeur minimale et une largeur flexible pour chaque élément */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.footer-logo {
+  text-align: center;
+}
+
+.footer-logo .logo {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+.footer-logo .footer-description {
+  font-size: 16px;
+  color: #000000; 
+}
+
+.footer-links,
+.footer-socials,
+.footer-newsletter {
+  text-align: center;
+}
+
+.footer-links h3,
+.footer-socials h3,
+.footer-newsletter h3 {
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin: 10px 0;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #4b0000;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.social-icon {
+  color: #000000;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #4b0000;
+}
+
+.footer-newsletter form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-newsletter input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.footer-newsletter button {
+  padding: 5px 10px;
+  background-color: #4b0000;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer-newsletter button:hover {
+  background-color: #000000;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  background-color: #111;
+  padding: 20px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Ordinateurs (grand écran par défaut) */
+/* Pas de media query nécessaire car votre design de base est déjà optimisé pour les grands écrans */
+
+/* Tablettes (écran de largeur max 1024px) */
+@media (max-width: 1024px) {
   .navbar {
-    position: fixed;
-    top: 0; /* Fixée en haut de la page */
-    right: 0;
-    left: auto;
+    padding: 10px 20px;
+    height: 70px;
+  }
+
+  .logo-container {
+    gap: 100px; /* Réduit l'espace entre logo et titre */
+  }
+
+  .product-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajuste la grille */
+  }
+
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr); /* Passe à 2 colonnes */
+  }
+}
+
+/* Smartphones (écran de largeur max 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    height: 50px; /* Réduction de la hauteur */
+    width: auto;
+    padding: 5px 10px; /* Réduction des marges */
+    white-space: nowrap; /* Garde tous les éléments sur une seule ligne */
+  }
+
+  .logo-container {
+    flex-shrink: 0; /* Évite que le logo se réduise */
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: #eae4dd;
-    width: 100%;
-    height: 60px;
-    box-shadow: 0 4px 6px rgba(255, 232, 232, 0.887); /* Ombre */
-    z-index: 1000; /* S'assurer qu'elle est au-dessus des autres éléments */
-    padding: 10px 40px;
+    gap: 0px; /* Réduit l'espace entre logo et texte */
   }
-  .logo-container {
-    display: flex;
-    align-items: center; /* Centre verticalement */
-    justify-content: center; /* Centre horizontalement */
-    gap: 400px;
-  }
+
   .logo-container img {
-    height: 150px;
-    width: 150px;
+    height: 60px; /* Réduction de la taille du logo */
+    width: 60px;
   }
+
   .logo-container h1 {
-    font-size: 30px;
-    font-weight: bold;
-    color: rgb(0, 0, 0);
-    text-align: center; /* Changez ici de start à center */
-    font-family: 'Playfair Display', serif;
+    font-size: 15px; /* Texte plus petit */
   }
+
   .nav-links {
     display: flex;
-    gap: 15px;
+    flex-shrink: 0; /* Évite que les liens soient compressés */
+    gap: 5px; /* Réduction de l'espace entre les liens */
   }
+
   .nav-links a {
-    color: #000000;
-    text-decoration: none;
-    padding: 10px 15px;
-    font-size: 16px;
+    font-size: 14px; /* Taille du texte réduite */
+    padding: 5px 10px; /* Marges internes réduites */
   }
-  .nav-links a:hover {
-    background-color: #000000;
-    border-radius: 50px;
-    transform: translateY(3px);
-    box-shadow: 0 4px 6px rgba(67, 41, 1, 0.857);
-    color:rgb(255, 255, 255) ;
+  .gallery {
+    height: 300px; /* Réduit la hauteur de la galerie */
   }
-  
+
+  .product-container {
+    grid-auto-flow: row; /* Les éléments s'alignent verticalement */
+    grid-template-columns: 1fr; /* Une seule colonne */
+    grid-auto-columns: unset; /* Désactive les colonnes automatiques */
+    overflow-x: unset; /* Pas de défilement horizontal */
+    gap: 20px;
+  }
+  .product-card {
+    width: 100%; /* S'adapte à la largeur du conteneur */
+    max-width: 300px;
+    margin: 0 auto; /* Centre les cartes en mode vertical */
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    width: 100%; /* Prend toute la largeur disponible */
+  }
+  table {
+    width: 90%; /* Réduit la largeur à 90% de l'écran */
+    margin: 0 auto; /* Centre le tableau horizontalement */
+  }
+
+  table th, table td {
+    font-size: 12px; /* Réduit la taille du texte pour l'adapter aux écrans */
+    padding: 0px; /* Réduit les marges internes */
+  }
+  .luxury-footer {
+    padding:5px 0; /* Réduit l'espacement */
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr; /* Une seule colonne */
+    gap: 0px; /* Réduit l'espace entre les sections */
+  }
+
+  .footer-logo, .footer-links, .footer-socials, .footer-newsletter {
+    text-align: center; /* Centrer le contenu */
+  }
+
+  .footer-links a {
+    font-size: 7px; /* Texte plus petit pour les smartphones */
+
+  }
+
+  .footer-bottom {
+    font-size: 3px; /* Texte encore plus petit */
+    margin-top: 8px; /* Réduit l'espace au-dessus */
+  }
+}
+
+
+
